@@ -1,11 +1,9 @@
 package cn.mushuwei.delaytask.redisson;
 
-import com.alibaba.fastjson.JSON;
 import lombok.extern.slf4j.Slf4j;
 import org.redisson.api.RBlockingQueue;
 import org.redisson.api.RedissonClient;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
@@ -21,8 +19,10 @@ import java.util.Map;
 public class RedisDelayedQueueInit implements ApplicationContextAware {
 
 
-    @Autowired
-    RedissonClient redissonClient;
+    private final RedissonClient redissonClient;
+    public RedisDelayedQueueInit(RedissonClient redissonClient) {
+        this.redissonClient = redissonClient;
+    }
 
     /**
      * 获取应用上下文并获取相应的接口实现类
